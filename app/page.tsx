@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     // Update the URL to your deployed server
-    const socket = io("https://chat-api-three-xi.vercel.app", {
+    const socket = io("https://chat-api-bpe7.onrender.com/", {
       path: '/socket.io', // Ensure the path is correctly set
       transports: ['websocket', 'polling'], // Ensure both transports are enabled
     });
