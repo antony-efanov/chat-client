@@ -14,7 +14,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const socket = io("https://chat-api-three-xi.vercel.app");
+    const socket = io("https://chat-api-three-xi.vercel.app", {
+      path: '/socket.io',
+      transports: ['websocket'],
+    });
 
     socket.on("message", (message) => {
       setInbox((prevInbox) => [...prevInbox, message]);
