@@ -14,9 +14,10 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Update the URL to your deployed server
     const socket = io("https://chat-api-three-xi.vercel.app", {
-      path: '/socket.io',
-      transports: ['websocket'],
+      path: '/socket.io', // Ensure the path is correctly set
+      transports: ['websocket', 'polling'], // Ensure both transports are enabled
     });
 
     socket.on("message", (message) => {
@@ -31,30 +32,30 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <div className="flex flex-col gap-5 mt-20 px-10 lg:px-48">
-        <div className="flex flex-col gap-2 border rounded-lg p-10">
-          {inbox.map((message: string, index: number) => {
-            return (
-              <div key={index} className="border rounded px-4 py-2">
-                {message}
-              </div>
-            );
-          })}
-        </div>
-        <div className="flex gap-2 align-center justify-center">
-          <input
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            type="text"
-            name="message"
-            className="flex-1 bg-black border rounded px-2 py-1"
-          />
-          <button className="w-40" onClick={handleSendMessage}>
-            Send message
-          </button>
+      <div>
+        <div className="flex flex-col gap-5 mt-20 px-10 lg:px-48">
+          <div className="flex flex-col gap-2 border rounded-lg p-10">
+            {inbox.map((message: string, index: number) => {
+              return (
+                  <div key={index} className="border rounded px-4 py-2">
+                    {message}
+                  </div>
+              );
+            })}
+          </div>
+          <div className="flex gap-2 align-center justify-center">
+            <input
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                type="text"
+                name="message"
+                className="flex-1 bg-black border rounded px-2 py-1"
+            />
+            <button className="w-40" onClick={handleSendMessage}>
+              Send message
+            </button>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
