@@ -7,7 +7,6 @@ export default function Home() {
   const [socket, setSocket] = useState<any>(undefined);
   const [inbox, setInbox] = useState<string[]>([]);
   const [message, setMessage] = useState("");
-  const [roomName, setRoomName] = useState("");
 
   const handleSendMessage = () => {
     socket.emit("message", message);
