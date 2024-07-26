@@ -14,12 +14,8 @@ export default function Home() {
     setMessage(""); // Clear the message input after sending
   };
 
-  const handleJoinRoom = () => {
-    socket.emit("joinRoom", roomName);
-  };
-
   useEffect(() => {
-    const socket = io("http://localhost:3000");
+    const socket = io("https://chat-api-three-xi.vercel.app");
 
     socket.on("message", (message) => {
       setInbox((prevInbox) => [...prevInbox, message]);
@@ -56,18 +52,6 @@ export default function Home() {
             Send message
           </button>
         </div>
-        {/*<div className="flex gap-2 align-center justify-center">*/}
-        {/*  <input*/}
-        {/*    value={roomName}*/}
-        {/*    onChange={(e) => setRoomName(e.target.value)}*/}
-        {/*    type="text"*/}
-        {/*    name="room"*/}
-        {/*    className="flex-1 bg-black border rounded px-2 py-1"*/}
-        {/*  />*/}
-        {/*  <button onClick={handleJoinRoom} className="w-40">*/}
-        {/*    Join Room*/}
-        {/*  </button>*/}
-        {/*</div>*/}
       </div>
     </div>
   );
